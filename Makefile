@@ -9,8 +9,8 @@ CFLAGS = -Wall -Wextra  -Werror
 all : $(NAME)
 
 
-$(NAME) : 
-	cc $(CFLAGS) -o $(NAME)
+$(NAME) : $(OBJ) 
+	cc $(CFLAGS) $(OBJ) -o $(NAME)
 
 %.o : %.c
 	cc $(CFLAGS) -c $< -o $@
