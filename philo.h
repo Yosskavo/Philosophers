@@ -6,7 +6,7 @@
 /*   By: yel-mota <yel-mota@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:57:26 by yel-mota          #+#    #+#             */
-/*   Updated: 2025/04/23 10:57:58 by yel-mota         ###   ########.fr       */
+/*   Updated: 2025/04/24 07:57:17 by yel-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,17 @@
 
 # include <stdio.h>
 # include <string.h>
+# include <unistd.h>
+
+typedef struct s_philo
+{
+    int number_of_philo;
+    int time_to_die;
+    int time_to_eat;
+    int time_to_sleep;
+    int must_eat;
+}   t_philo;
+
+int ft_parcing(char **av, int ac, t_philo *data);
 
 #endif

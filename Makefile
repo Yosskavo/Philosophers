@@ -1,6 +1,6 @@
 NAME = philo
 
-SRC = philo.c
+SRC = philo.c parcing.c
 
 OBJ = $(SRC:.c=.o)
 
