@@ -6,7 +6,7 @@
 /*   By: yel-mota <yel-mota@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:57:22 by yel-mota          #+#    #+#             */
-/*   Updated: 2025/04/24 08:01:06 by yel-mota         ###   ########.fr       */
+/*   Updated: 2025/05/07 15:12:49 by yel-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@ int main(int ac, char **av)
 {
     t_philo philo;
 
-    if (!(ac == 5 || ac == 6))
-        return (ft_arguments_error());
-    if (!ft_parcing(av + 1, ac, &philo))
-        return (ft_puterror("incorrect argument\n", 2), 1);
+  if (!(ac == 5 || ac == 6))
+    return (ft_arguments_error());
+  if (!ft_parcing(av + 1, ac, &philo))
+    return (ft_puterror("incorrect argument\n", 2), 1);
+  ft_start(philo);
 }

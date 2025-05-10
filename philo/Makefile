@@ -1,10 +1,10 @@
 NAME = philo
 
-SRC = philo.c parcing.c
+SRC = philo.c parcing.c ft_start.c ft_lst.c
 
 OBJ = $(SRC:.c=.o)
 
-CFLAGS = -Wall -Wextra  -Werror
+CFLAGS = -Wall -Wextra  -Werror -pthread
 
 all : $(NAME)
 

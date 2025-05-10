@@ -14,8 +14,10 @@
 # define PHILO_H
 
 # include <stdio.h>
+# include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <pthread.h>
 
 typedef struct s_philo
 {
@@ -26,6 +28,24 @@ typedef struct s_philo
     int must_eat;
 }   t_philo;
 
+/*
+  next is the left 
+  previous is the right
+*/
+
+typedef struct s_ph
+{
+    pthread_mutex_t fork;
+    int             froks;
+    int id;
+    struct s_ph     *next;
+    struct s_ph     *previous;
+}   t_ph;
+
 int ft_parcing(char **av, int ac, t_philo *data);
+void ft_start(t_philo data);
+t_ph *ft_lst_newphilo(int id);
+void ft_lst_add_philo(t_ph **list, t_ph *new);
+void ft_lst_clear(t_ph **data);
 
 #endif
