@@ -6,7 +6,7 @@
 /*   By: yel-mota <yel-mota@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:57:26 by yel-mota          #+#    #+#             */
-/*   Updated: 2025/05/18 15:10:52 by yel-mota         ###   ########.fr       */
+/*   Updated: 2025/05/21 14:44:10 by yel-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <sys/time.h>
 # include <pthread.h>
 
 typedef struct s_philo
@@ -26,8 +27,10 @@ typedef struct s_philo
     int time_to_eat;
     int death;
     pthread_mutex_t pm;
+    pthread_mutex_t st;
     int time_to_sleep;
     int must_eat;
+    long long start;
 }   t_philo;
 
 /*
@@ -39,7 +42,8 @@ typedef struct s_ph
 {
     pthread_mutex_t fork;
     int             froks;
-    int id;
+    int              id;
+    long long         start;
     t_philo          *info;
     struct s_ph     *next;
     struct s_ph     *previous;
@@ -52,6 +56,7 @@ int ft_lst_add_philo(t_ph **list, t_ph *new);
 void ft_lst_clear(t_ph **data);
 t_ph *ft_lst_last_philo(t_ph *philo);
 int ft_life(t_ph *philo);
+long long ft_time(struct timeval data);
 
 
 

@@ -10,6 +10,7 @@ t_ph	*ft_lst_newphilo(int i, t_philo *data)
 	pthread_mutex_init(&(philo->fork), NULL);
 	philo->info = data;
 	pthread_mutex_init(&(philo->info->pm), NULL);
+	// pthread_mutex_init(&(philo->info->st), NULL);
 	philo->id = i + 1;
 	philo->next = NULL;
 	philo->previous = NULL;
@@ -42,6 +43,7 @@ void	ft_lst_clear(t_ph **data)
 	(*data)->previous = NULL;
 	tmp = (*data)->next;
 	pthread_mutex_destroy(&((*data)->info->pm));
+	// pthread_mutex_destroy(&((*data)->info->st));
 	while (tmp)
 	{
 		pthread_mutex_destroy(&((*data)->fork));
