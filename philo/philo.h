@@ -6,7 +6,7 @@
 /*   By: yel-mota <yel-mota@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:57:26 by yel-mota          #+#    #+#             */
-/*   Updated: 2025/05/21 14:44:10 by yel-mota         ###   ########.fr       */
+/*   Updated: 2025/05/22 14:22:23 by yel-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_philo
 typedef struct s_ph
 {
     pthread_mutex_t fork;
-    int             froks;
+    int             eat;
     int              id;
     long long         start;
     t_philo          *info;
@@ -62,7 +62,7 @@ long long ft_time(struct timeval data);
 
 /// functions for routine of philosophers
 
-void  *ft_sleep(t_ph *philo);
+void  *ft_sleep(void *philo);
 void  *ft_think(void *data);
 void  *ft_eat(void *data);
 void  ft_p(char *mess, t_ph *philo);

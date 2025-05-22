@@ -14,7 +14,7 @@ t_ph	*ft_lst_newphilo(int i, t_philo *data)
 	philo->id = i + 1;
 	philo->next = NULL;
 	philo->previous = NULL;
-	philo->froks = 0;
+	philo->eat = 0;
 	return (philo);
 }
 
