@@ -28,7 +28,7 @@ int	ft_life(t_ph *philo)
 		{
 			if (philo->eat == 1)
 				pthread_create(&p[i], NULL, ft_sleep, philo);
-			else if ((philo->id + j) % 2 == 0)
+			else if ((philo->id + j) % 2 != 0)
                 pthread_create(&p[i], NULL, ft_eat, philo);
 			else
 				pthread_create(&p[i], NULL, ft_think, philo);
