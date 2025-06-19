@@ -6,7 +6,7 @@
 /*   By: yel-mota <yel-mota@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:57:26 by yel-mota          #+#    #+#             */
-/*   Updated: 2025/05/22 14:22:23 by yel-mota         ###   ########.fr       */
+/*   Updated: 2025/06/19 06:11:20 by yel-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_philo
     int time_to_sleep;
     int must_eat;
     long long start;
+    int   philos;
 }   t_philo;
 
 /*
@@ -43,7 +44,9 @@ typedef struct s_ph
     pthread_mutex_t fork;
     int             eat;
     int              id;
+    long long        time_eat;
     long long         start;
+    long long         old;
     t_philo          *info;
     struct s_ph     *next;
     struct s_ph     *previous;
@@ -57,14 +60,13 @@ void ft_lst_clear(t_ph **data);
 t_ph *ft_lst_last_philo(t_ph *philo);
 int ft_life(t_ph *philo);
 long long ft_time(struct timeval data);
-
+int	ft_currenttime(t_ph *philo);
 
 
 /// functions for routine of philosophers
 
-void  *ft_sleep(void *philo);
-void  *ft_think(void *data);
-void  *ft_eat(void *data);
+void *ft_routine(void *arg);
 void  ft_p(char *mess, t_ph *philo);
+void *ft_monitorine(void *arg);
 
 #endif
