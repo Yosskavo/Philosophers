@@ -6,7 +6,7 @@
 /*   By: yel-mota <yel-mota@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:57:26 by yel-mota          #+#    #+#             */
-/*   Updated: 2025/06/19 06:11:20 by yel-mota         ###   ########.fr       */
+/*   Updated: 2025/06/19 14:43:53 by yel-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void ft_lst_clear(t_ph **data);
 t_ph *ft_lst_last_philo(t_ph *philo);
 int ft_life(t_ph *philo);
 long long ft_time(struct timeval data);
-int	ft_currenttime(t_ph *philo);
+long long	ft_currenttime(t_ph *philo);
 
 
 /// functions for routine of philosophers
@@ -68,5 +68,6 @@ int	ft_currenttime(t_ph *philo);
 void *ft_routine(void *arg);
 void  ft_p(char *mess, t_ph *philo);
 void *ft_monitorine(void *arg);
+long long	ft_now_time(void);
 
 #endif

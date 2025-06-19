@@ -1,12 +1,20 @@
 #include "philo.h"
 
-int	ft_currenttime(t_ph *philo)
+long long	ft_currenttime(t_ph *philo)
 {
 	struct timeval start;
 
 	gettimeofday(&start, NULL);
 	philo->start = ft_time(start) - philo->info->start;
 	return (philo->start);
+}
+
+long long	ft_now_time(void)
+{
+	struct timeval start;
+
+	gettimeofday(&start, NULL);
+	return (ft_time(start));
 }
 
 void	ft_p(char *mess, t_ph *philo)
@@ -31,13 +39,14 @@ void	*ft_sleep(t_ph *philo)
 void	*ft_think(t_ph *philo)
 {
 	ft_p("is thinking", philo);
-	usleep(philo->info->time_to_die - philo->info->time_to_eat);
-	return (NULL);
+	if (philo->info->philos % 2 != 0 && philo->info->time_to_eat > philo->info->time_to_sleep - 5)
+		usleep((philo->info->time_to_eat - philo->info->time_to_sleep + 5) * 1000);
+return (NULL);
 }
 
 void	*ft_eat(t_ph *philo)
 {
-    if (&(philo->fork) > &(philo->next->fork))
+    if (philo->id % 2 == 0)
     {
 	    pthread_mutex_lock(&(philo->fork));
 		ft_p("has taken a fork", philo);
@@ -52,10 +61,10 @@ void	*ft_eat(t_ph *philo)
 		ft_p("has taken a fork", philo);
 	}
 	ft_p("is eating", philo);
-	philo->time_eat = ft_currenttime(philo) - philo->time_eat; 
-	philo->eat = 1;
-	usleep(philo->info->time_to_eat * 1000);
-    if (&(philo->fork) > &(philo->next->fork))
+	philo->time_eat = ft_currenttime(philo);
+	usleep(philo->info->time_to_eat *  1000);
+	philo->eat += 1;
+    if (philo->id % 2 == 0)
     {
 	    pthread_mutex_unlock(&(philo->fork));
 	    pthread_mutex_unlock(&(philo->next->fork));
