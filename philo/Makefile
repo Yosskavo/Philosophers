@@ -1,13 +1,12 @@
 NAME = philo
 
-SRC = philo.c parcing.c ft_start.c ft_lst.c ft_life.c ft_routine.c ft_monitorne.c
+SRC = philo.c ft_eat.c ft_time.c parcing.c	ft_strlen.c ft_start.c ft_lst.c ft_life.c ft_routine.c ft_monitoring.c
 
 OBJ = $(SRC:.c=.o)
 
-CFLAGS = -Wall -Wextra  -Werror -pthread
+CFLAGS = -Wall -Wextra  -Werror -pthread -g
 
 all : $(NAME)
-
 
 $(NAME) : $(OBJ) 
 	cc $(CFLAGS) $(OBJ) -o $(NAME)

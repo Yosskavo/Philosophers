@@ -1,26 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_life.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yel-mota <yel-mota@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/21 10:15:32 by yel-mota          #+#    #+#             */
+/*   Updated: 2025/06/22 09:49:55 by yel-mota         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
-long long ft_time(struct timeval data)
+long long	ft_time(struct timeval data)
 {
 	return ((long long)data.tv_sec * 1000 + data.tv_usec / 1000);
 }
 
 int	ft_life(t_ph *philo)
 {
-	pthread_t	*p;
-	struct timeval start;
-	int			id;
-	int			i;
+	pthread_t		*p;
+	int				id;
+	int				i;
 
 	p = malloc((philo->previous->id + 1) * sizeof(pthread_t));
-	philo->info->philos = philo->previous->id;
-	id = philo->previous->id + 1;
+	id = philo->info->philos + 1;
 	if (!p)
 		return (-1);
 	i = 0;
-	gettimeofday(&start, NULL);
-	philo->info->start =  ft_time(start);
-	pthread_create(&p[0], NULL, ft_monitorine, philo);
+	philo->info->start = ft_now_time();
+	pthread_create(&p[0], NULL, ft_monitoring, philo);
 	i = 1;
 	while (i < id)
 	{
@@ -29,13 +38,10 @@ int	ft_life(t_ph *philo)
 		i++;
 	}
 	i = 0;
-	while (!(philo->info->death))
-		;
-	while (i < id) 
+	while (i < id)
 	{
 		pthread_join(p[i], NULL);
 		i++;
 	}
-	free(p);
-	return (0);
+	return (free(p), 0);
 }

@@ -6,21 +6,11 @@
 /*   By: yel-mota <yel-mota@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:57:22 by yel-mota          #+#    #+#             */
-/*   Updated: 2025/05/18 15:11:14 by yel-mota         ###   ########.fr       */
+/*   Updated: 2025/06/22 05:46:17 by yel-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
 
 void	ft_puterror(char *str, int fd)
 {
@@ -47,4 +37,5 @@ int	main(int ac, char **av)
 	if (!ft_parcing(av + 1, ac, &philo))
 		return (ft_puterror("incorrect argument\n", 2), 1);
 	ft_start(philo);
+	return (0);
 }

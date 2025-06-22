@@ -1,21 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_routine.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yel-mota <yel-mota@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/21 10:15:42 by yel-mota          #+#    #+#             */
+/*   Updated: 2025/06/22 09:45:11 by yel-mota         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
-
-long long	ft_currenttime(t_ph *philo)
-{
-	struct timeval start;
-
-	gettimeofday(&start, NULL);
-	philo->start = ft_time(start) - philo->info->start;
-	return (philo->start);
-}
-
-long long	ft_now_time(void)
-{
-	struct timeval start;
-
-	gettimeofday(&start, NULL);
-	return (ft_time(start));
-}
 
 void	ft_p(char *mess, t_ph *philo)
 {
@@ -23,7 +18,7 @@ void	ft_p(char *mess, t_ph *philo)
 	if (!(philo->info->death))
 	{
 		ft_currenttime(philo);
-		printf("%llu %d %s\n", philo->start, philo->id, mess);
+		printf("%llu %lld %s\n", philo->start, philo->id, mess);
 	}
 	pthread_mutex_unlock(&(philo->info->pm));
 }
@@ -32,54 +27,28 @@ void	*ft_sleep(t_ph *philo)
 {
 	ft_p("is sleeping", philo);
 	usleep(philo->info->time_to_sleep * 1000);
-	philo->eat = 0;
 	return (NULL);
 }
 
 void	*ft_think(t_ph *philo)
 {
 	ft_p("is thinking", philo);
-	if (philo->info->philos % 2 != 0 && philo->info->time_to_eat > philo->info->time_to_sleep - 5)
-		usleep((philo->info->time_to_eat - philo->info->time_to_sleep + 5) * 1000);
-return (NULL);
-}
-
-void	*ft_eat(t_ph *philo)
-{
-    if (philo->id % 2 == 0)
-    {
-	    pthread_mutex_lock(&(philo->fork));
-		ft_p("has taken a fork", philo);
-	    pthread_mutex_lock(&(philo->next->fork));
-		ft_p("has taken a fork", philo);
-    }
-    else
-    {
-	    pthread_mutex_lock(&(philo->next->fork));
-		ft_p("has taken a fork", philo);
-		pthread_mutex_lock(&(philo->fork));
-		ft_p("has taken a fork", philo);
-	}
-	ft_p("is eating", philo);
-	philo->time_eat = ft_currenttime(philo);
-	usleep(philo->info->time_to_eat *  1000);
-	philo->eat += 1;
-    if (philo->id % 2 == 0)
-    {
-	    pthread_mutex_unlock(&(philo->fork));
-	    pthread_mutex_unlock(&(philo->next->fork));
-    }
-    else
-    {
-	    pthread_mutex_unlock(&(philo->next->fork));
-		pthread_mutex_unlock(&(philo->fork));
-	}
+	usleep(philo->info->time_to_think * 1000);
 	return (NULL);
 }
 
-void *ft_routine(void *arg)
+// void ft_begning(t_ph *philo)
+// {
+// 	if (philo->id % 2 != 0)
+// 	{
+// 		ft_p("is thinking", philo);
+// 		usleep(100);
+// 	}
+// }
+
+void	*ft_routine(void *arg)
 {
-	t_ph *philo;
+	t_ph	*philo;
 	int		i;
 
 	philo = (t_ph *)arg;
@@ -88,13 +57,20 @@ void *ft_routine(void *arg)
 	else
 		i = 1;
 	philo = (t_ph *)(arg);
-	if (philo->id % 2 == 0)
-		usleep(100);
+	pthread_mutex_lock(&(philo->te));
+	philo->time_eat = 0;
+	pthread_mutex_unlock(&(philo->te));
+	ft_p("is thinking", philo);
+	pthread_mutex_lock(&(philo->info->pm));
 	while (!(philo->info->death))
 	{
-		ft_think(philo);
-		ft_eat(philo);
+		pthread_mutex_unlock(&(philo->info->pm));
+		if (ft_eat(philo))
+			break ;
 		ft_sleep(philo);
+		ft_think(philo);
+		pthread_mutex_lock(&(philo->info->pm));
 	}
+	pthread_mutex_unlock(&(philo->info->pm));
 	return (NULL);
 }
