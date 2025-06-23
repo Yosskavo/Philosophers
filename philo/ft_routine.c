@@ -6,7 +6,7 @@
 /*   By: yel-mota <yel-mota@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 10:15:42 by yel-mota          #+#    #+#             */
-/*   Updated: 2025/06/22 09:45:11 by yel-mota         ###   ########.fr       */
+/*   Updated: 2025/06/23 03:06:44 by yel-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,8 @@ void	*ft_think(t_ph *philo)
 void	*ft_routine(void *arg)
 {
 	t_ph	*philo;
-	int		i;
 
 	philo = (t_ph *)arg;
-	if (philo->info->philos % 2 == 0)
-		i = 0;
-	else
-		i = 1;
-	philo = (t_ph *)(arg);
 	pthread_mutex_lock(&(philo->te));
 	philo->time_eat = 0;
 	pthread_mutex_unlock(&(philo->te));
