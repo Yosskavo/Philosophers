@@ -20,8 +20,8 @@ long long	ft_time(struct timeval data)
 int	ft_life(t_ph *philo)
 {
 	pthread_t		*p;
-	int				id;
-	int				i;
+	long long		id;
+	long long		i;
 
 	p = malloc((philo->previous->id + 1) * sizeof(pthread_t));
 	id = philo->info->philos + 1;

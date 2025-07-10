@@ -4,7 +4,7 @@ SRC = philo.c ft_eat.c ft_time.c parcing.c	ft_strlen.c ft_start.c ft_lst.c ft_li
 
 OBJ = $(SRC:.c=.o)
 
-CFLAGS = -Wall -Wextra  -Werror -pthread
+CFLAGS = -Wall -Wextra  -Werror -pthread 
 
 all : $(NAME)
 

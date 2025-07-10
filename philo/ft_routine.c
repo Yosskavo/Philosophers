@@ -6,7 +6,7 @@
 /*   By: yel-mota <yel-mota@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 10:15:42 by yel-mota          #+#    #+#             */
-/*   Updated: 2025/06/23 03:06:44 by yel-mota         ###   ########.fr       */
+/*   Updated: 2025/07/10 14:37:33 by yel-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	*ft_routine(void *arg)
 	philo->time_eat = 0;
 	pthread_mutex_unlock(&(philo->te));
 	ft_p("is thinking", philo);
+	if (philo->id % 2)
+		usleep(2000);
 	pthread_mutex_lock(&(philo->info->pm));
 	while (!(philo->info->death))
 	{
