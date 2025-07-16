@@ -6,7 +6,7 @@
 /*   By: yel-mota <yel-mota@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 10:17:47 by yel-mota          #+#    #+#             */
-/*   Updated: 2025/06/22 10:24:33 by yel-mota         ###   ########.fr       */
+/*   Updated: 2025/07/16 13:45:03 by yel-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	ft_eat(t_ph *philo)
 	pthread_mutex_unlock(&(philo->te));
 	ft_p("is eating", philo);
 	ft_he_ate(philo);
-	usleep(philo->info->time_to_eat * 1000);
+	ft_usleep(philo, philo->info->time_to_eat * 1000);
 	pthread_mutex_unlock(&(philo->next->fork));
 	pthread_mutex_unlock(&(philo->fork));
 	return (0);

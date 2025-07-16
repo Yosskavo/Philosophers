@@ -6,7 +6,7 @@
 /*   By: yel-mota <yel-mota@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:57:26 by yel-mota          #+#    #+#             */
-/*   Updated: 2025/06/22 09:49:55 by yel-mota         ###   ########.fr       */
+/*   Updated: 2025/07/16 13:38:54 by yel-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ size_t				ft_strlen(char *str);
 long long			ft_time(struct timeval data);
 long long			ft_currenttime(t_ph *philo);
 long long			ft_now_time(void);
-
+void ft_usleep(t_ph *philo, int time);
 /// functions for routine of philosophers
 
 void				*ft_routine(void *arg);

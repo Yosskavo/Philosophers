@@ -6,7 +6,7 @@
 /*   By: yel-mota <yel-mota@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 10:15:22 by yel-mota          #+#    #+#             */
-/*   Updated: 2025/06/22 09:30:32 by yel-mota         ###   ########.fr       */
+/*   Updated: 2025/07/16 14:00:56 by yel-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@ t_ph	*ft_creat_lst(t_philo *data)
 
 	i = 0;
 	philo = NULL;
-	pthread_mutex_init(&(data->pm), NULL);
-	pthread_mutex_init(&(data->st), NULL);
-	pthread_mutex_init(&(data->dt), NULL);
+	if (pthread_mutex_init(&(data->pm), NULL) && pthread_mutex_init(&(data->st), NULL) && pthread_mutex_init(&(data->dt), NULL))
+		return (NULL);
 	while (i < data->philos)
 	{
 		if (ft_lst_add_philo(&philo, ft_lst_newphilo(i, data)) == -1)

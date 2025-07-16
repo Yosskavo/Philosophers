@@ -6,7 +6,7 @@
 /*   By: yel-mota <yel-mota@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 10:15:42 by yel-mota          #+#    #+#             */
-/*   Updated: 2025/07/12 09:04:19 by yel-mota         ###   ########.fr       */
+/*   Updated: 2025/07/16 13:38:32 by yel-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void	ft_p(char *mess, t_ph *philo)
 void	*ft_sleep(t_ph *philo)
 {
 	ft_p("is sleeping", philo);
-	usleep(philo->info->time_to_sleep * 1000);
+	ft_usleep(philo, philo->info->time_to_sleep * 1000);
 	return (NULL);
 }
 
 void	*ft_think(t_ph *philo)
 {
 	ft_p("is thinking", philo);
-	usleep(philo->info->time_to_think * 1000);
+	ft_usleep(philo, philo->info->time_to_think * 1000);
 	return (NULL);
 }
 
