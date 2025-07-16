@@ -6,7 +6,7 @@
 /*   By: yel-mota <yel-mota@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 10:15:12 by yel-mota          #+#    #+#             */
-/*   Updated: 2025/06/21 10:30:06 by yel-mota         ###   ########.fr       */
+/*   Updated: 2025/07/16 17:37:10 by yosskavo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,12 @@ int	ft_lst_add_philo(t_ph **list, t_ph *new)
 
 void	ft_destroy(t_philo *data)
 {
-	pthread_mutex_destroy(&(data->pm));
-	pthread_mutex_destroy(&(data->st));
-	pthread_mutex_destroy(&(data->dt));
+	if (pthread_mutex_destroy(&(data->pm)))
+    return ;
+	if (pthread_mutex_destroy(&(data->st)))
+    return ;
+	if (pthread_mutex_destroy(&(data->dt)))
+    return ;
 }
 
 void	ft_lst_clear(t_ph **data)

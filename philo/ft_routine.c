@@ -6,7 +6,7 @@
 /*   By: yel-mota <yel-mota@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 10:15:42 by yel-mota          #+#    #+#             */
-/*   Updated: 2025/07/16 13:38:32 by yel-mota         ###   ########.fr       */
+/*   Updated: 2025/07/16 17:34:09 by yosskavo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	*ft_routine(void *arg)
 	{
 		pthread_mutex_unlock(&(philo->info->pm));
 		if (ft_eat(philo))
-			break ;
+			return (NULL);
 		ft_sleep(philo);
 		ft_think(philo);
 		pthread_mutex_lock(&(philo->info->pm));
