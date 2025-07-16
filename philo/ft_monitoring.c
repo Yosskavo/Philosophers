@@ -6,7 +6,7 @@
 /*   By: yel-mota <yel-mota@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 04:52:36 by yel-mota          #+#    #+#             */
-/*   Updated: 2025/07/16 17:35:07 by yosskavo         ###   ########.fr       */
+/*   Updated: 2025/07/16 20:52:05 by yel-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	*ft_monitoring(void *arg)
 			return (pthread_mutex_unlock(&(philo->info->pm)), NULL);
 		}
 		philo = philo->next;
-		usleep(5000);
+		usleep(500);
 	}
 	return (NULL);
 }

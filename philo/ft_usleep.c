@@ -6,13 +6,13 @@
 /*   By: yel-mota <yel-mota@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 13:26:55 by yel-mota          #+#    #+#             */
-/*   Updated: 2025/07/16 13:40:50 by yel-mota         ###   ########.fr       */
+/*   Updated: 2025/07/16 21:01:46 by yel-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void ft_usleep(t_ph *philo, int time)
+void	ft_usleep(t_ph *philo, int time)
 {
 	while (time)
 	{

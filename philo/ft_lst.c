@@ -6,7 +6,7 @@
 /*   By: yel-mota <yel-mota@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 10:15:12 by yel-mota          #+#    #+#             */
-/*   Updated: 2025/07/16 17:37:10 by yosskavo         ###   ########.fr       */
+/*   Updated: 2025/07/16 21:01:19 by yel-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,12 @@ t_ph	*ft_lst_newphilo(int i, t_philo *data)
 		return (NULL);
 	philo->start = 0;
 	philo->time_eat = 0;
-	pthread_mutex_init(&(philo->fork), NULL);
-	pthread_mutex_init(&(philo->st), NULL);
-	pthread_mutex_init(&(philo->te), NULL);
+	if (pthread_mutex_init(&(philo->fork), NULL)
+		|| pthread_mutex_init(&(philo->st), NULL)
+		|| pthread_mutex_init(&(philo->te), NULL)
+		|| pthread_mutex_init(&(philo->eats), NULL))
+		return (NULL);
 	philo->info = data;
-	pthread_mutex_init(&(philo->eats), NULL);
 	philo->id = i + 1;
 	philo->next = NULL;
 	philo->previous = NULL;
@@ -51,12 +52,9 @@ int	ft_lst_add_philo(t_ph **list, t_ph *new)
 
 void	ft_destroy(t_philo *data)
 {
-	if (pthread_mutex_destroy(&(data->pm)))
-    return ;
-	if (pthread_mutex_destroy(&(data->st)))
-    return ;
-	if (pthread_mutex_destroy(&(data->dt)))
-    return ;
+	pthread_mutex_destroy(&(data->pm));
+	pthread_mutex_destroy(&(data->st));
+	pthread_mutex_destroy(&(data->dt));
 }
 
 void	ft_lst_clear(t_ph **data)
